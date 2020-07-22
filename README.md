@@ -16,7 +16,6 @@ A minimal forum application built with the following technologies:
 * Users can favorite discussions
 * Users have their own profile page
 * Admin can create new forum categories
-* Admin have a lot of power over every users discussions and opinions :-p
 
 ### Documentations
 * [API Docs](https://github.com/shoumma/ReForum/blob/master/docs/api.md)
