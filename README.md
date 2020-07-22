@@ -17,10 +17,6 @@ A minimal forum application built with the following technologies:
 * Users have their own profile page
 * Admin can create new forum categories
 
-### Documentations
-* [API Docs](https://github.com/shoumma/ReForum/blob/master/docs/api.md)
-* [System Overview](https://github.com/shoumma/ReForum/blob/master/docs/system_overview.md)
-
 ### Home View
 ![home view](./docs/design_assets/home_view.jpg)
 
