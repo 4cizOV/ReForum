@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema({
   username: String,
   avatarUrl: String,
   email: String,
+  password: String,
   role: { type: String, default: 'user' }, // ['admin', 'moderator', 'user']
   github: {
     id: Number,

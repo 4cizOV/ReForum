@@ -1,6 +1,8 @@
 const passport = require('passport');
 const signIn = require('./controller').signIn;
 const getFullProfile = require('./controller').getFullProfile;
+const signUp = require('./controller').signUp;
+const login = require('./controller').login;
 
 /**
  * user apis
@@ -39,6 +41,24 @@ const userAPI = (app) => {
       error => { res.send({ error }); }
     );
   });
+
+  // user signup (user registeration) 
+  app.post('/api/user', (req, res) => {
+    signUp(req.body).then(
+      result => { res.send(result) },
+      error => { res.send({ error }); }
+    );
+  });
+
+  // user login endpoint, uses passport local strategy
+  app.post(
+    '/api/login', 
+    passport.authenticate('local', 
+      { successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true 
+      })
+  );
 };
 
 module.exports = userAPI;

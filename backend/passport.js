@@ -3,6 +3,7 @@
  */
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 const GITHUB_CLIENT_ID = require('../config/credentials').GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = require('../config/credentials').GITHUB_CLIENT_SECRET;
@@ -11,6 +12,7 @@ const GITHUB_CALLBACK_URL = require('../config/credentials').GITHUB_CALLBACK_URL
 // controllers
 const getUser = require('./entities/user/controller').getUser;
 const signInViaGithub = require('./entities/user/controller').signInViaGithub;
+const login = require('./entities/user/controller').login;
 
 /**
  * passport configuration
@@ -42,6 +44,26 @@ const passportConfig = (app) => {
       );
     }
   ));
+
+  // local strategy for login using username and password
+  passport.use(new LocalStrategy(
+    (username, password, done) => {
+      login(username, password).then(
+        (user) => { 
+          console.log('got the user'); 
+          done(null, user); 
+        },
+        (error) => {
+          if(typeof error == "string"){
+            return done(null, false, { message: error });
+          }else{
+            return done(err);
+          }
+        }
+      );
+    }
+  ))
+
 };
 
 module.exports = passportConfig;

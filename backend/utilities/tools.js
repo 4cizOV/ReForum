@@ -1,3 +1,6 @@
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
+
 /**
  * Search object properties recursively and
  * perform callback action on each
@@ -40,7 +43,28 @@ const generateDiscussionSlug = (discussionTitle) => {
   return discussionTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_' + ObjectId;
 };
 
+/**
+ * Generate Password Hash using bycrypt and saltRounds
+ * @param {String} password simple plain password
+ * @return Password Hash
+ */
+const generatePasswordHash = (password) => {
+  return bcrypt.hash(password, saltRounds);
+}
+
+/**
+ * Compare Password Hash from DB with plain password provided by user 
+ * @param {String} password simple plain password
+ * @param {String} passwordHash password hash from DB
+ * @return {Boolean} true if password matches else false
+ */
+const comparePasswordHash = (password, passwordHash) => {
+  return bcrypt.compare(password, passwordHash);
+}
+
 module.exports = {
   deepPropSearch,
+  comparePasswordHash,
+  generatePasswordHash,
   generateDiscussionSlug,
 };
