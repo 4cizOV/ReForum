@@ -9,6 +9,8 @@ const User = require('./model');
 const Discussion = require('../discussion/model');
 const Opinion = require('../opinion/model');
 
+const tools = require("../../utilities/tools");
+
 /**
  * get user doc by user id
  * @param  {ObjectId} user_id
@@ -154,8 +156,107 @@ const getFullProfile = (username) => {
   });
 };
 
+/**
+ * Sign Up User with username and password
+ * @param {Object} userData
+ */
+const signUp = (userData) => {
+  const { username, password, email } = userData;
+  return new Promise((resolve, reject) => {
+
+    // validate request body (payload)
+    if(!username || !password || !email){
+      reject({ message: "Incorrect Payload" });
+      return;
+    }
+
+
+    // find if user exist on db
+    User.findOne({ username: username }, (error, user) => {
+      if (error) { 
+        console.log(error); 
+        reject(error); 
+        return;
+      }
+
+      // user existed on db
+      if (user) {
+        reject({ message: "User Already Exist" });
+        return;
+      }
+      // user doesn't exists on db
+      else {
+
+        // generate password hash
+        tools.generatePasswordHash(password).then(passwordHash => {
+
+          // assign him/her as the admin
+          // check if it is the first user (adam/eve) :-p
+          User.count({}, (err, count) => {
+            console.log('usercount: ' + count);
+  
+              let assignAdmin = false;
+              if (count === 0) assignAdmin = true;
+  
+              // create a new user
+              const newUser = new User({
+                name: userData.name,
+                username: username,
+                password: passwordHash,
+                avatarUrl: userData.avatar_url,
+                email: email,
+                role: assignAdmin ? 'admin' : 'user'
+              });
+  
+              // save the user and resolve the user doc
+              newUser.save((error) => {
+                if (error) { console.log(error); reject(error); }
+                else {
+                  // remove password key from response body
+                  delete newUser.password; 
+                  resolve(newUser); 
+                }
+              });
+            });
+        });
+      }
+    })
+  });
+}
+
+/**
+ * login user
+ * @param {String} username
+ * @param {String} password
+ */
+const login = (username, password) => {
+  return new Promise((resolve, reject) => {
+
+    // get user from db using username provided
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return reject(err); }
+      // user not found
+      if (!user) {
+        return reject('Incorrect username.');
+      }
+      // validate password
+      tools.comparePasswordHash(password, user.password).then(result => {
+        if(result){
+          // remove password hash key
+          delete user.password;
+          return resolve(user);   
+        }
+        return reject('Incorrect password.');
+      });
+    });
+
+  })
+}
+
 module.exports = {
   signInViaGithub,
   getUser,
   getFullProfile,
+  signUp,
+  login
 };
