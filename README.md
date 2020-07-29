@@ -2,11 +2,7 @@
 
 
 # ReForum
-A simple forum application that can easily be deployed on Heroku.
-
----
-
-Before you deploy the app make sure to add the URL to your Mongo database and add your GitHub api credentials
+A simple, easy-to-deploy forum application
 
 ### Todo
 
@@ -19,12 +15,17 @@ Before you deploy the app make sure to add the URL to your Mongo database and ad
 
 
 
-### Home View
-![home view](./docs/design_assets/home_view.jpg)
+#### Home View
+[home view](./docs/design_assets/home_view.jpg)
 
-### Admin View
-![admin view](./docs/design_assets/admin_view.jpg)
+#### Admin View
+[admin view](./docs/design_assets/admin_view.jpg)
 
+
+---
+
+Before you deploy the app make sure to add the URL to your Mongo database and add your GitHub api credentials.
+On Heroku you can install the mLab MongoDB addon.
 
 To run the app in development environment:
 ```
@@ -39,13 +40,9 @@ $ npm run start
 
 Deployed on Heroku: https://forum3.herokuapp.com/
 
-It's showing you `Sorry, couldn't find the forum`. That is because, you didn't create any forum yet. The first user who signs up can visit the admin panel with the url [https://forum3.herokuapp.com/admin](https://forum3.herokuapp.com/admin). The application is currently configured in a way that the first user will become the admin for the system.
+If it's showing you `Sorry, couldn't find the forum` you didn't create any forum yet. The first user who signs up can visit the admin panel with the url [https://forum3.herokuapp.com/admin](https://forum3.herokuapp.com/admin).
 
-## Path for Future Work
-* Add local user accounts instead of GitHub authentication
 
 ## License
 [MIT License](https://github.com/shoumma/Mister-Poster/blob/master/LICENSE).
-
-
 [Provash Shoumma](https://twitter.com/proshoumma)
