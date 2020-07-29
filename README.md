@@ -11,9 +11,9 @@ A simple, easy-to-deploy forum application
 - [ ] Improve the UI design
 - [ ] Add dark mode
 
-**Home View:** [home view.jpg](./docs/design_assets/home_view.jpg)
+**Home View:** [home view.jpg](https://raw.githubusercontent.com/4cizOV/ReForum/master/docs/design_assets/home_view.jpg)
 
-**Admin View:** [admin view.jpg](./docs/design_assets/admin_view.jpg)
+**Admin View:** [admin view.jpg](https://raw.githubusercontent.com/4cizOV/ReForum/master/docs/design_assets/admin_view.jpg)
 
 ---
 
