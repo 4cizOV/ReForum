@@ -6,21 +6,14 @@ A simple, easy-to-deploy forum application
 
 ### Todo
 
-- [x] Signup with email backend
-- [ ] Signup with email frontend
-- [ ] Hide GitHub username if user signed up with email
-- [ ] Make the UI design better
-- [ ] Dark mode
+- [x] Signup with email (backend)
+- [ ] Signup with email (frontend)
+- [ ] Improve the UI design
+- [ ] Add dark mode
 
+**Home View:** [home view.jpg](./docs/design_assets/home_view.jpg)
 
-
-
-#### Home View
-[home view](./docs/design_assets/home_view.jpg)
-
-#### Admin View
-[admin view](./docs/design_assets/admin_view.jpg)
-
+**Admin View:** [admin view.jpg](./docs/design_assets/admin_view.jpg)
 
 ---
 
@@ -40,9 +33,11 @@ $ npm run start
 
 Deployed on Heroku: https://forum3.herokuapp.com/
 
-If it's showing you `Sorry, couldn't find the forum` you didn't create any forum yet. The first user who signs up can visit the admin panel with the url [https://forum3.herokuapp.com/admin](https://forum3.herokuapp.com/admin).
+If you didn't create any categories it will display `Sorry, couldn't find the forum`.
+The first user who signs up can visit the admin panel with the url [https://forum3.herokuapp.com/admin](https://forum3.herokuapp.com/admin) and create categories.
 
 
-## License
+### License
 [MIT License](https://github.com/shoumma/Mister-Poster/blob/master/LICENSE).
+
 [Provash Shoumma](https://twitter.com/proshoumma)
